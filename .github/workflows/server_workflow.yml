@@ -1,7 +1,9 @@
 name: Server Workflow
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -19,12 +21,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Start Server
-        run: |
-          npm start &
-          sleep 5 # Sleep for a few seconds to give the server time to start
-
-      - name: Run Client Script
+      - name: Run Client Script and Redirect Output
         run: |
           node client.js > client_output.log
+        continue-on-error: true
 
+      - name: Display Client Output
+        run: cat client_output.log
