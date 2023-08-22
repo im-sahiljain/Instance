@@ -3,7 +3,6 @@ name: Server Workflow
 on:
   workflow_dispatch:
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,5 +20,6 @@ jobs:
         run: npm install
 
       - name: Start Server
-        run: npm start
-        background: true
+        run: |
+          npm start &
+          sleep 5 # Sleep for a few seconds to give the server time to start
