@@ -1,9 +1,8 @@
 name: Server Workflow
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
 
 jobs:
   build:
